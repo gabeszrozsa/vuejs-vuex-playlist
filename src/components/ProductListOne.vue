@@ -12,19 +12,23 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+import {mapGetters} from 'vuex';
+
 export default {
   computed: {
     products() {
       return this.$store.state.products;
     },
-    saleProducts() {
-      return this.$store.getters.saleProducts;
-    }
+    // babel-preset-stage-2 install & babel config modify
+    ...mapGetters([
+      'saleProducts'
+    ])
   },
   methods: {
-    reducePrice: function(amount) {
-      this.$store.dispatch('reducePrice', amount);
-    }
+    ...mapActions([
+      'reducePrice'
+    ])
   }
 }
 </script>
